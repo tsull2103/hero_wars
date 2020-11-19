@@ -10,6 +10,13 @@ import os
 client = discord.Client()
 reminder_file_path = "C:/discord/reward_time.txt"
 
+token_file_path = "C:/discord/token.txt"
+token_file_df = pd.read_csv(token_file_path, sep=",", index_col=None, header=0)
+keys = token_file_df['bot']
+values = token_file_df['token']
+token_file_dict = dict(zip(keys, values))
+token = token_file_dict.get('reminder')
+
 timezone_dict = {
     "GMT": "Etc/GMT",
     "GMT-1": "Etc/GMT+1",
@@ -227,4 +234,4 @@ def validate_command(command, command_type):
             return "Good"
 
 client.loop.create_task(my_background_task())
-client.run('Nzc0MTAzMjE2Njk4MDMyMTM5.X6S5zQ.qx1MWRkvOD6t02_XRa1S-IEKXho')
+client.run(token)

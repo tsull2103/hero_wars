@@ -16,6 +16,12 @@ guild_a_champ_recommend_path = "C:/discord/guild_a_champ_recommend.txt"
 
 channel_id = 774112256924975137
 
+token_file_path = "C:/discord/token.txt"
+token_file_df = pd.read_csv(token_file_path, sep=",", index_col=None, header=0)
+keys = token_file_df['bot']
+values = token_file_df['token']
+token_file_dict = dict(zip(keys, values))
+token = token_file_dict.get('war_planner')
 
 @client.event
 async def on_message(message):
@@ -186,4 +192,4 @@ def validate_command(command, command_type):
         else:
             return "Goo"
 
-client.run('Nzc1NTEzMzIzNTUzNjg1NTE3.X6nbEA.nfN_ZcfYh2yNzTjWRixxaQb5wOU')
+client.run(token)
